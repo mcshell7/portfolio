@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="page">
+
+@include('partials/head.html')
+
+<body class="page__body">
+  <div class="site-container">
+    @include('partials/header.html')
+    <main class="main">
+      <div class="blog__page-items">
+        <div class="post__img">
+          <img src="img/blog/blog-page.jpeg" alt="">
+          <h1 class="post__title h1"><span>Blog</span></h1>
+        </div>
+        <div class="blog__items">
+          <a class="blog__item" href="#" style="background-image: url(../img/blog/sass.png);">
+            <div class="blog__item-content">
+              <div class="blog__item-date">
+                02.22.2024
+              </div>
+              <h3 class="blog__item-title">
+                Sass Selectors: To Nest Or Not To Nest?
+              </h3>
+            </div>
+          </a>
+          <a class="blog__item" href="#" style="background-image: url(../img/blog/sass.png);">
+            <div class="blog__item-content">
+              <div class="blog__item-date">
+                02.22.2024
+              </div>
+              <h3 class="blog__item-title">
+                Sass Selectors: To Nest Or Not To Nest?
+              </h3>
+            </div>
+          </a>
+          <a class="blog__item" href="#" style="background-image: url(../img/blog/git.jpeg);">
+            <div class="blog__item-content">
+              <div class="blog__item-date">
+                03.21.2023
+              </div>
+              <div class="blog__item-title">
+                How to Fix "throw er; // Unhandled 'error' event"?
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="pagination">
+          <div class="pagination__items">
+            <span class="pagination__item pagination__prev disabled">
+              <span class="svg">
+                <svg>
+                  <use xlink:href="img/sprite.svg#arrow"></use>
+                </svg>
+              </span>
+            </span>
+            <a class="pagination__item pagination__active" href="#">1</a>
+            <a class="pagination__item" href="#">2</a>
+            <a class="pagination__item" href="#">3</a>
+            <a class="pagination__item pagination__next" href="#">
+              <span class="svg">
+                <svg>
+                  <use xlink:href="img/sprite.svg#arrow"></use>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+       </div>
+
+    </main>
+    @include('partials/footer.html')
+    <!-- @include('html/h1.html') пример include -->
+  </div>
+</body>
+
+</html>

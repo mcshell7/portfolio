@@ -1,0 +1,42 @@
+.menu{
+  padding: 20px 0;
+  font-size: 16px;
+  font-weight: 700;
+
+  &__list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__item-link{
+    text-transform: uppercase;
+    @include transition;
+    position: relative;
+    padding: 0 20px;
+    &::before{
+        @include transition;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 0px;
+        background-color: var(--dark-color);
+      }
+    &.active{
+      &::before{
+        left: 20px;
+        width: calc(100% - 40px);
+      }
+    }
+  }
+}
+.header{
+  &:not(.sticky){
+    .menu__item-link{
+      &::before{
+        background-color: var(--light-color);
+      }
+    }
+  }
+}

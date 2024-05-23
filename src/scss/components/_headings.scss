@@ -1,0 +1,19 @@
+$base-font-size: 18px;
+$heading-scale: 8; // amount of px headings grow from h6 to h1
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-weight: 700;
+    line-height: 1.3em;
+    // font-size: $base-font-size + $heading-scale * (6 - $i);
+  }
+}
+
+h2,.h2{
+  font-size: 36px;
+  margin-bottom: 0.5em;
+}
+h3,.h3{
+  font-size: 32px;
+  margin-bottom: 0.6em;
+}

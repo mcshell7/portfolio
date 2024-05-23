@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="page">
+
+@include('partials/head.html')
+
+<body class="page__body">
+  <div class="site-container">
+    @include('partials/header.html')
+    <main class="main">
+      <div class="post__img">
+        <img src="img/blog/git.jpeg" alt="">
+        <h1 class="post__title h1"><span>Sass Selectors: To Nest Or Not To Nest?</span></h1>
+      </div>
+      <div class="post__content">
+        <div class="content">
+          <p>I <a href="https://twitter.com/brad_frost/status/1046813109481091072">threw a question out on Twitter</a> regarding CSS/Sass authoring style.&nbsp;It was a difference between Option 1:</p>
+
+          <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.c-btn { ... }
+
+          .c-btn__icon { ... }
+          </code></pre></div></div>
+
+          <p>and Option 2:</p>
+
+          <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.c-btn {
+              &amp;__icon {
+                  ...
+              }
+          }
+          </code></pre></div></div>
+
+          <p>The results were interesting so I wanted to write them up. Here we go!</p>
+
+          <h2>Option 1: Not Nested</h2>
+
+          <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.c-btn { ... }
+
+          .c-btn__icon { ... }
+          </code></pre></div></div>
+
+          <p>As you can see, this looks like regular ol’ CSS. Because it is! Let’s unpack the pros and cons of this approach.</p>
+
+          <h3>Pros</h3>
+
+          <ul>
+            <li><strong>Findable/Searchable</strong> – the biggest advantage this approach has is being able to quickly find a selector in a codebase. If you encounter <code class="language-plaintext highlighter-rouge">class="c-btn__icon"</code> in your markup and need to view or edit the styles for <code class="language-plaintext highlighter-rouge">.c-btn__icon</code>, you search for <code class="language-plaintext highlighter-rouge">c-btn__icon</code> in your project and arrive at the styles for the selector.</li>
+            <li><strong>Legible</strong> – Legibility of course is a relative thing, but proponents find this approach more legible than a bunch of nested selectors. As <a href="https://twitter.com/MarcDrummond/status/1047117380034408456">Marc points out</a>, this approach becomes especially helpful for longer partials that require scrolling.</li>
+            <li><strong>Not reliant on Sass</strong> – This approach uses plain CSS conventions to structure CSS instead of leaning on a preprocessor to. Some proponents of this approach like the idea of leaning less on preprocessors and instead reaching for built in features of CSS instead.</li>
+            <li><strong>Keeps things flatter</strong> – With Sass it can be easy to go <a href="http://thesassway.com/beginner/the-inception-rule">crazy with nesting</a>, and this approach keeps things flat, which saves nesting for special scenarios like adding hover/focus states, parent selectors, and media queries.</li>
+          </ul>
+
+          <h3>Cons</h3>
+
+          <ul>
+            <li><strong>Not DRY (Don’t Repeat Yourself)</strong> – The big downside of this approach is that you have to repeat your selector for as many children or modifiers your component may have. This opens the door to more typos and having to touch multiple things if you want to rename a component.</li>
+            <li><strong>More verbose</strong> – This approach is not as succinct as nesting child and modifier selectors, meaning developers have to write more characters to accomplish their styling.</li>
+          </ul>
+
+          <h2>Option 2: Nested</h2>
+
+          <p>Option 2 takes advantage of <a href="https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector">Sass’s parent selector</a> feature, which uses an ampersand to prepend the parent selector to wherever the <code class="language-plaintext highlighter-rouge">&amp;</code> appears.</p>
+
+          <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.c-btn {
+              &amp;__icon {
+                  ...
+              }
+          }
+          </code></pre></div></div>
+
+          <h3>Pros</h3>
+
+          <ul>
+            <li><strong>Keeps things DRY</strong>&nbsp;– The big advantage of this approach is that authors don’t have to repeat themselves. They can define the component name in exactly one place and it will prepend to all children and modifiers that are nested inside it. The <a href="https://css-tricks.com/the-sass-ampersand/">Sass <code class="language-plaintext highlighter-rouge">&amp;</code>&nbsp;feature</a> is pretty neat and powerful, and this approach takes full advantage of it.</li>
+            <li><strong>Succinct</strong> – Related to being DRY, developers don’t have to write as much, meaning they can focus on the <code class="language-plaintext highlighter-rouge">&amp;__icon</code> part of the selector and not have to worry about what comes before it. It saves writing characters so there could be some developer speed improvements as well.</li>
+          </ul>
+
+          <h3>Cons</h3>
+
+          <ul>
+            <li><strong>Findability/searchability issues</strong> – When looking at a chunk of HTML, authors can search for a class name in their project and immediately be taken to the corresponding styles for that selector. Proponents of this nesting approach mentioned how using <a href="http://thesassway.com/intermediate/using-source-maps-with-sass">source maps</a>&nbsp;in addition to using logical partials removes this barrier, but many others said they found it harder to zero in on specific selectors they encounter in HTML.</li>
+            <li><strong>Can lose context</strong> – This certainly isn’t an issue for shorter components like the example I shared above, some components (like cards, headers, carousels, and so on) can get pretty gnarly. With a nested approach, developers can lose context within the partial, making it harder to grok where you’re at.</li>
+            <li><strong>Requires multi-level nesting</strong> – In order to achieve pseudo-classes, write media queries, and do other nested selectors, you’re now looking at being 3 levels deep. This isn’t necessarily a bad thing, but it can open the door to nesting abuse.</li>
+          </ul>
+
+          <p><a href="https://chipcullen.com/leading-ampersands-in-sass-an-anti-pattern/">This post</a> by Chip Cullen discusses his experience with Option 2 and lays out similar cons.</p>
+
+          <h2>My Personal Approach</h2>
+
+          <p>When I threw this out there on Twitter, I was impressed by how many people weighed in and how split the results were. It’s clear there are pros to each approach, and developers can state a case for choosing one or the other.</p>
+
+          <p>One theme in the responses resonated with my own experience. People said something to the tune of “I used to do Option 2, but switched to Option 1.” That’s exactly how things panned out for me. I used to lean a lot harder into Sass features (lots of ampersands, nesting, variables, mixins, extends, and so on), but as the years go by I find myself pulling back and instead relying more or less on CSS’s (increasingly powerful) feature set. Partials and imports are still great, some mixins are still very helpful (for things like clumping <code class="language-plaintext highlighter-rouge">font-size</code>, <code class="language-plaintext highlighter-rouge">line-height</code>, and <code class="language-plaintext highlighter-rouge">letter-spacing</code> together) and I haven’t fully switched to CSS variables yet, but I find myself walking back from going all-in on Sass features. As <a href="https://twitter.com/Una/status/1046815053205377025">Una said</a>, Option 2 is novel, but maybe it’s not as practical.</p>
+
+          <p>Time also plays a big role in this. I think it’s fascinating a lot of people talked about the perils of Option 2 after significant time has passed and they needed to revisit a codebase only to discover they couldn’t find what they’re looking for. There’s something to that, and I think that’s why I continue to think Option 1 is a bit more sturdy than Option 2.</p>
+
+          <p>Regarding verbosity, I find it interesting that people talked about reducing characters, but they’re still advocating <a href="http://getbem.com/naming/">BEM</a>-style CSS, which of course is super verbose . <a href="http://bradfrost.com/blog/post/css-architecture-for-design-systems/">As I’ve written elsewhere</a>, on projects I’ve architected we’ve made decisions that <strong>legibility trumps succinctness</strong> when writing CSS, and I feel that same principle applies here. Yes it’s more characters to type, and yes you have to update multiple selectors when refactoring (my favorite is repeatedly mashing <code class="language-plaintext highlighter-rouge">Cmd + D</code> until I get them all), but to me I feel those extra characters lead to a more legible and stable codebase.</p>
+
+          <p>I can definitely see the merits of both options, and if I joined a project that made use of Option 2 I likely wouldn’t throw a fit and insist on refactoring to Option 1. But like any stylistic or syntactic decisions your team makes, just make sure you document your frontend guidelines (and hey! <a href="https://github.com/bradfrost/frontend-guidelines-questionnaire">I made a thing</a> for that) and ensure all of your team members are on the same page.</p>
+
+        </div>
+       </div>
+
+    </main>
+    @include('partials/footer.html')
+    <!-- @include('html/h1.html') пример include -->
+  </div>
+</body>
+
+</html>

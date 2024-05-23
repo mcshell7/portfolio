@@ -1,0 +1,307 @@
+@media (pointer: coarse) {
+
+  .portfolio{
+
+    &__item{
+
+      .portfolio__item-content{
+        *{
+          opacity: 1;
+        }
+        &::after{
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1020px) {
+  .blog{
+    &__page-items{
+      .blog__items{
+       width: calc(100% - 30px);
+      }
+    }
+  }
+
+}
+@media screen and (max-width: 768px) {
+  .header{
+    z-index: 20;
+    position: relative;
+    height: auto;
+    width: 100%;
+  }
+  .menu{
+    padding: 0;
+  }
+  .menu__list{
+    position: fixed;
+    right: -100%;
+    opacity: 1;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    padding: 50px;
+    top: 0;
+    margin: 0;
+    @include transition;
+    z-index: 3;
+    &.active{
+      right: 0;
+
+    }
+  }
+  .menu__btn{
+    z-index: 100;
+    position: fixed;
+    margin-top: 20px;
+    margin-right: 20px;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include transition;
+
+    span {
+      pointer-events: none;
+      position: relative;
+      z-index: 1;
+      height: 4px;
+      width: 100%;
+      background-color: var(--light-color);
+      @include transition;
+    }
+    &.active{
+      span{
+        top: 10px;
+        rotate: -45deg;
+        position: absolute;
+        background-color: var(--dark-color);
+        &:first-child{
+          rotate: 45deg;
+        }
+        &:last-child{
+          opacity: 0;
+        }
+      }
+    }
+  }
+  .section-bg,.contacts{
+    padding: 50px 0;
+  }
+}
+@media screen and (max-width: 700px) {
+  .skills{
+    &__list{
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px 0;
+      justify-items: center;
+
+    }
+    &__item{
+      width: fit-content;
+      height: 100%;
+      text-align: center;
+      justify-content: center;
+      display: flex;
+
+      a {
+        padding: 50px;
+        width: fit-content;
+        }
+      img{
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+  h2,.h2{
+    font-size: 28px;
+  }
+  .blog{
+    &__item{
+      padding: 15px;
+      height: 300px;
+    }
+    &__item-title{
+      font-size: 20px;
+    }
+  }
+  .blog{
+    &__page-items{
+      .blog__items{
+       padding: 15px;
+
+      }
+    }
+  }
+  .pagination{
+    margin: 40px 0;
+  }
+  .post__content{
+    .content{
+      padding: 25px;
+    }
+  }
+}
+@media screen and (max-width: 570px) {
+  .skills{
+    &__list{
+      grid-template-columns: 1fr 1fr;
+
+    }
+    &__item{
+      a {
+        padding: 50px;
+        }
+      img{
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+  .h1{
+    font-size: 40px;
+  }
+  .welcome__title{
+    font-size: 40px;
+
+  }
+  .about{
+    &__inner{
+      display: block;
+    }
+    &__img{
+      width: 100%;
+    }
+    &__content{
+      width: 100%;
+    }
+  }
+  .section-bg,.contacts{
+    padding: 25px 0 ;
+  }
+  .portfolio{
+    &__list{
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+  .blog{
+    &__items{
+      flex-direction: column;
+
+    }
+    &__item{
+      width: 100%;
+      padding: 15px;
+      height: 200px;
+    }
+    &__item-title{
+      font-size: 20px;
+    }
+  }
+  .post__img{
+    height: 350px;
+  }
+  .content{
+    h1{
+      font-size: 28px;
+    }
+    h2{
+      font-size: 24px;
+    }
+    h3{
+      font-size: 20px;
+    }
+    h4{
+      font-size: 18px;
+    }
+  }
+}
+@media screen and (max-width: 440px) {
+  .skills{
+    &__list{
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+    }
+    &__item{
+      a {
+        padding: 2em;
+        }
+      img{
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+  .welcome{
+    &__title{
+      font-size: 32px;
+    }
+  }
+  h3,.h3{
+    font-size: 20px;
+    margin-bottom: 1em;
+  }
+  h2,.h2{
+    font-size: 22px;
+    margin-bottom: 0.8em;
+  }
+  p{
+    font-size: 15px;
+  }
+  .form{
+    &__item{
+      width: 100%;
+    }
+    &__items{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      input,textarea {
+        max-width: 100%;
+      }
+    }
+  }
+  .pagination{
+    margin: 30px 0;
+  }
+  .post__content{
+    .content{
+      padding: 20px;
+    }
+  }
+  .post__img{
+    height: 300px;
+  }
+  .h1{
+    font-size: 28px;
+  }
+
+}
+@media screen and (max-width: 400px) {
+  .skills{
+    &__list{
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    &__item{
+      a {
+        padding: 1.5em;
+        }
+      img{
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+  .pagination{
+    margin: 25px 0;
+  }
+}

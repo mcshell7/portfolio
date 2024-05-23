@@ -1,0 +1,26 @@
+.button{
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-align: center;
+  padding: 18px 40px;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border-radius: 100px;
+  transition: all 0.3s;
+  cursor: pointer;
+  @media (hover: hover) {
+    &:hover{
+      color: var(--dark-color);
+      background-color: var(--light-color);
+    }
+  }
+}
+
+
+mark{
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}

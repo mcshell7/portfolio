@@ -1,0 +1,22 @@
+.about{
+  &__inner{
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  &__img{
+    width: 50%;
+    img{
+      max-height: 500px;
+      object-fit: cover;
+    }
+  }
+  &__content{
+    width: 50%;
+  }
+  p{
+    line-height: 1.4em;
+    font-weight: 300;
+    margin-bottom: 1em;
+  }
+}
